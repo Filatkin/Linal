@@ -46,9 +46,9 @@ public:
     {
         return Vector3D(x-v.x,y-v.y,z-v.z);
     }
-    Vector3D operator* (const Vector3D& v)
+    double operator* (const Vector3D& v)
     {
-        return Vector3D(x*v.x,y*v.y,z*v.z);
+        return x*v.x+y*v.y+z*v.z;
     }
 };
 Vector3D operator* (double a, const Vector3D& v)
@@ -149,9 +149,9 @@ public:
         }
         return M;
     }
-    Matrix3D operator* (const Vector3D& v)
+    Vector3D operator* (const Vector3D& v)
     {
-        Matrix3D M;
+        Vector3D V;
         for(unsigned int i=0;i<3;i++)
         {
             double c;
@@ -160,16 +160,9 @@ public:
             {
                 c+=a[i][k]*v.getValue(k+1);
             }
-            M.setValue(i,0,c);
+            V.setValue(i+1,c);
         }
-        for(unsigned int i=1;i<3;i++)
-        {
-            for(unsigned int j=1;j<3;j++)
-            {
-                M.setValue(i,j,0);
-            }
-        }
-        return M;
+        return V;
     }
     double det()
     {
