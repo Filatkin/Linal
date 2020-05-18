@@ -1,13 +1,12 @@
 #include <iostream>
-#include <vector3d.hpp>
+#include "vector3d.hpp"
 Vector3D::Vector3D(double _x, double _y, double _z): x(_x), y(_y), z(_z)
     {
 
     }
-Vector3D::Vector3D(): Vector3D(0,0,0)
-    {
-
-    }
+Vector3D::Vector3D()
+{
+}
 double Vector3D::getValue(unsigned int i) const
     {
         if(i==1)
@@ -27,15 +26,15 @@ void Vector3D::setValue(unsigned int i,double value)
         if(i==3)
             this->z=value;
     }
-Vector3D::Vector3D operator* (const double a) const
+Vector3D Vector3D::operator* (const double a) const
     {
         return Vector3D(x*a,y*a,z*a);
     }
-Vector3D::Vector3D operator+ (const Vector3D& v)
+Vector3D Vector3D::operator+ (const Vector3D& v)
     {
         return Vector3D(x+v.x,y+v.y,z+v.z);
     }
-Vector3D::Vector3D operator- (const Vector3D& v)
+Vector3D Vector3D::operator- (const Vector3D& v)
     {
         return Vector3D(x-v.x,y-v.y,z-v.z);
     }
